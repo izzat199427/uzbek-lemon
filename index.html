@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Узбекские лимоны | Сорта, выращивание, уход</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-green: #2e7d32;
+            --primary-gold: #ffb347;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fef9e6;
+        }
+        .navbar {
+            background: linear-gradient(135deg, #1f4f2b 0%, #2e7d32 100%);
+        }
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1580320382886-01d2f8c115f2?q=80&w=2070');
+            background-size: cover;
+            background-position: center;
+            min-height: 500px;
+        }
+        .card {
+            border: none;
+            border-radius: 16px;
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        .btn-success {
+            background-color: var(--primary-green);
+            border-color: var(--primary-green);
+        }
+        .btn-warning {
+            background-color: var(--primary-gold);
+            border-color: var(--primary-gold);
+            color: #2c2b28;
+        }
+        footer {
+            background-color: #1c2b1a;
+        }
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-green);
+        }
+    </style>
+</head>
+<body>
+
+<!-- Навигация -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <i class="fas fa-lemon"></i> O'zbek Lemon
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="#sorts">Сорта</a></li>
+                <li class="nav-item"><a class="nav-link" href="#grow">Выращивание</a></li>
+                <li class="nav-item"><a class="nav-link" href="#care">Уход</a></li>
+                <li class="nav-item"><a class="nav-link" href="#founders">Основатели</a></li>
+                <li class="nav-item"><a class="nav-link" href="#news">Новости</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero секция -->
+<section class="hero text-white d-flex align-items-center" style="margin-top: 76px;">
+    <div class="container text-center">
+        <h1 class="display-4 fw-bold mb-4">Узбекские лимоны — <br>Золото Ферганской долины</h1>
+        <p class="lead mb-4">Уникальные сорта, вековые традиции и плодородные земли</p>
+        <a href="#sorts" class="btn btn-warning btn-lg">Узнать больше</a>
+    </div>
+</section>
+
+<!-- Статистика -->
+<section class="py-5 bg-white">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-3 mb-3">
+                <div class="stat-number">10+</div>
+                <p>Уникальных сортов</p>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="stat-number">200+</div>
+                <p>Гектаров садов</p>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="stat-number">30+</div>
+                <p>Лет плодоношения</p>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="stat-number">50+</div>
+                <p>Тонн/гектар</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Сорта -->
+<section id="sorts" class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Популярные сорта узбекских лимонов</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body text-center">
+                        <i class="fas fa-lemon fa-3x text-success mb-3"></i>
+                        <h5 class="card-title text-success">Ферганский крупноплодный</h5>
+                        <p class="card-text">Плоды до 200 грамм, сочная мякоть, урожайность до 60 кг с дерева.</p>
+                        <span class="badge bg-warning text-dark">150-200 г</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body text-center">
+                        <i class="fas fa-sun fa-3x text-success mb-3"></i>
+                        <h5 class="card-title text-success">Ташкентский ранний</h5>
+                        <p class="card-text">Начинает плодоносить на 2-3 год, кисло-сладкий вкус.</p>
+                        <span class="badge bg-warning text-dark">100-150 г</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body text-center">
+                        <i class="fas fa-water fa-3x text-success mb-3"></i>
+                        <h5 class="card-title text-success">Самаркандский душистый</h5>
+                        <p class="card-text">Тонкий аромат с нотками бергамота, почти без косточек.</p>
+                        <span class="badge bg-warning text-dark">120-180 г</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Как вырастить -->
+<section id="grow" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-5">Как вырастить лимон в Узбекистане</h2>
+        <div class="row">
+            <div class="col-md-3 mb-4">
+                <div class="text-center">
+                    <i class="fas fa-seedling fa-3x text-success mb-3"></i>
+                    <h5>1. Выбор саженца</h5>
+                    <p>Привитые саженцы 2-3 лет весной</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="text-center">
+                    <i class="fas fa-tint fa-3x text-success mb-3"></i>
+                    <h5>2. Полив</h5>
+                    <p>Летом 2-3 раза в неделю</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="text-center">
+                    <i class="fas fa-cut fa-3x text-success mb-3"></i>
+                    <h5>3. Обрезка</h5>
+                    <p>Ранней весной формировка кроны</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="text-center">
+                    <i class="fas fa-flask fa-3x text-success mb-3"></i>
+                    <h5>4. Подкормка</h5>
+                    <p>Раз в месяц комплексные удобрения</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Уход -->
+<section id="care" class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Как заботиться о лимонах</h2>
+        <div class="row">
+            <div class="col-md-3 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <i class="fas fa-thermometer-half fa-2x text-warning mb-3"></i>
+                        <h5>Температура</h5>
+                        <p>Идеально +20..28°C, зимой не ниже +5°C</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <i class="fas fa-bug fa-2x text-warning mb-3"></i>
+                        <h5>Болезни</h5>
+                        <p>Паутинный клещ, щитовка - обработка мыльным раствором</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <i class="fas fa-snowplow fa-2x text-warning mb-3"></i>
+                        <h5>Зимний покой</h5>
+                        <p>Снижение полива, прекращение подкормок</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <i class="fas fa-hand-sparkles fa-2x text-warning mb-3"></i>
+                        <h5>Опыление</h5>
+                        <p>В теплицах - кисточкой, на улице - пчёлы</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Основатели -->
+<section id="founders" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-5">Основатели и селекционеры</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <i class="fas fa-user-graduate fa-3x text-success mb-3"></i>
+                        <h5>Абдурашид Каримов</h5>
+                        <p class="text-muted">1925-2005</p>
+                        <p>Вывел "Ферганский гигант", основал промышленное выращивание лимонов</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <i class="fas fa-chalkboard-user fa-3x text-success mb-3"></i>
+                        <h5>Дильшод Рахимов</h5>
+                        <p class="text-muted">Современный селекционер</p>
+                        <p>Восстановил насаждения после 90-х, основал питомник "Lemon Valley"</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <i class="fas fa-users fa-3x text-success mb-3"></i>
+                        <h5>Объединение "Бахор"</h5>
+                        <p class="text-muted">200+ семей</p>
+                        <p>Сохранение традиций органического выращивания</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Плодородные земли -->
+<section class="py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h2 class="mb-4">Плодородные земли Узбекистана</h2>
+                <p class="lead">Светло-серозёмные почвы Ферганской долины — идеальная основа для лимонных садов</p>
+                <p>Благодаря древним ирригационным системам (арыкам), мягкому климату и богатому гумусу, узбекские лимоны приобретают уникальные вкусовые качества.</p>
+                <div class="mt-4">
+                    <i class="fas fa-check-circle text-success me-2"></i> pH 6.0-7.0<br>
+                    <i class="fas fa-check-circle text-success me-2"></i> Высокое содержание гумуса<br>
+                    <i class="fas fa-check-circle text-success me-2"></i> Отличный дренаж<br>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <img src="https://images.unsplash.com/photo-1572507806539-6e39e877e58a?w=600" alt="Ферганская долина" class="img-fluid rounded shadow">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Новости -->
+<section id="news" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-5">Последние новости</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <img src="https://images.unsplash.com/photo-1580320382886-01d2f8c115f2?w=400" class="card-img-top" alt="Новость">
+                    <div class="card-body">
+                        <small class="text-muted">15 марта 2025</small>
+                        <h5 class="card-title mt-2">Ферганские лимоны получили сертификат качества</h5>
+                        <p class="card-text">Продукция узбекских фермеров признана соответствующей международным стандартам.</p>
+                        <a href="#" class="btn btn-sm btn-outline-success">Читать →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <img src="https://images.unsplash.com/photo-1567696912428-3b4e2a4be4b8?w=400" class="card-img-top" alt="Новость">
+                    <div class="card-body">
+                        <small class="text-muted">1 марта 2025</small>
+                        <h5 class="card-title mt-2">Новый сорт лимона вывели в Намангане</h5>
+                        <p class="card-text">Сорт "Наманганский гигант" дает плоды до 300 грамм.</p>
+                        <a href="#" class="btn btn-sm btn-outline-success">Читать →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <img src="https://images.unsplash.com/photo-1580306229155-30b5b5bd6aab?w=400" class="card-img-top" alt="Новость">
+                    <div class="card-body">
+                        <small class="text-muted">20 февраля 2025</small>
+                        <h5 class="card-title mt-2">Урожай лимонов вырос на 30%</h5>
+                        <p class="card-text">Благодаря новым технологиям орошения урожайность значительно увеличилась.</p>
+                        <a href="#" class="btn btn-sm btn-outline-success">Читать →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Футер -->
+<footer class="text-white py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h5><i class="fas fa-lemon"></i> O'zbek Lemon</h5>
+                <p>Информационный портал о выращивании лимонов в Узбекистане</p>
+            </div>
+            <div class="col-md-4">
+                <h5>Контакты</h5>
+                <p><i class="fas fa-envelope"></i> info@uzbek-lemon.uz</p>
+                <p><i class="fas fa-phone"></i> +998 71 123 45 67</p>
+            </div>
+            <div class="col-md-4">
+                <h5>Следите за нами</h5>
+                <a href="#" class="text-white me-3"><i class="fab fa-telegram fa-2x"></i></a>
+                <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-2x"></i></a>
+                <a href="#" class="text-white"><i class="fab fa-facebook fa-2x"></i></a>
+            </div>
+        </div>
+        <hr class="mt-4">
+        <div class="text-center">
+            <p class="mb-0">© 2025 Узбекские лимоны. Все права защищены.</p>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
