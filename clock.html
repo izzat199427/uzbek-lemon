@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мировые часы - Time Zone Clock</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .title {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .clocks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .clock-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .clock-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .clock-city {
+            color: #00ff88;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+        }
+
+        .analog-clock {
+            width: 150px;
+            height: 150px;
+            margin: 20px auto;
+            border: 3px solid #00ff88;
+            border-radius: 50%;
+            position: relative;
+            background: rgba(0, 0, 0, 0.3);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+        }
+
+        .analog-clock::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: #00ff88;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.8);
+        }
+
+        .hand {
+            position: absolute;
+            bottom: 50%;
+            left: 50%;
+            transform-origin: bottom center;
+            background: #00ff88;
+            box-shadow: 0 0 5px rgba(0, 255, 136, 0.8);
+        }
+
+        .hour-hand {
+            width: 4px;
+            height: 40px;
+            margin-left: -2px;
+        }
+
+        .minute-hand {
+            width: 3px;
+            height: 55px;
+            margin-left: -1.5px;
+        }
+
+        .second-hand {
+            width: 2px;
+            height: 60px;
+            margin-left: -1px;
+            background: #ff4444;
+            box-shadow: 0 0 5px rgba(255, 68, 68, 0.8);
+        }
+
+        .digital-time {
+            color: #00ff88;
+            font-size: 2rem;
+            font-weight: bold;
+            font-family: 'Courier New', monospace;
+            margin: 15px 0;
+            text-shadow: 0 0 10px rgba(0, 255, 136, 0.8);
+            letter-spacing: 2px;
+        }
+
+        .clock-date {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .clock-offset {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.85rem;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .timezones-list {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .timezones-title {
+            color: #00ff88;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+        }
+
+        .timezone-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            color: white;
+            border-left: 3px solid #00ff88;
+        }
+
+        .timezone-name {
+            font-weight: bold;
+            color: #00ff88;
+        }
+
+        .timezone-offset {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 1.8rem;
+            }
+
+            .clocks-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .digital-time {
+                font-size: 1.5rem;
+            }
+
+            .analog-clock {
+                width: 120px;
+                height: 120px;
+            }
+        }
+
+        /* Анимация пульса */
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        .analog-clock::before {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">🌍 Мировые часы</h1>
+
+        <div class="clocks-grid">
+            <!-- Москва -->
+            <div class="clock-card">
+                <div class="clock-city">🇷🇺 Москва</div>
+                <div class="clock-date" id="date-moscow"></div>
+                <div class="analog-clock">
+                    <div class="hand hour-hand" id="hour-moscow"></div>
+                    <div class="hand minute-hand" id="minute-moscow"></div>
+                    <div class="hand second-hand" id="second-moscow"></div>
+                </div>
+                <div class="digital-time" id="time-moscow">00:00:00</div>
+                <div class="clock-offset" id="offset-moscow">UTC +3</div>
+            </div>
+
+            <!-- Нью-Йорк -->
+            <div class="clock-card">
+                <div class="clock-city">🇺🇸 Нью-Йорк</div>
+                <div class="clock-date" id="date-newyork"></div>
+                <div class="analog-clock">
+                    <div class="hand hour-hand" id="hour-newyork"></div>
+                    <div class="hand minute-hand" id="minute-newyork"></div>
+                    <div class="hand second-hand" id="second-newyork"></div>
+                </div>
+                <div class="digital-time" id="time-newyork">00:00:00</div>
+                <div class="clock-offset" id="offset-newyork">UTC -5</div>
+            </div>
+
+            <!-- Лондон -->
+            <div class="clock-card">
+                <div class="clock-city">🇬🇧 Лондон</div>
+                <div class="clock-date" id="date-london"></div>
+                <div class="analog-clock">
+                    <div class="hand hour-hand" id="hour-london"></div>
+                    <div class="hand minute-hand" id="minute-london"></div>
+                    <div class="hand second-hand" id="second-london"></div>
+                </div>
+                <div class="digital-time" id="time-london">00:00:00</div>
+                <div class="clock-offset" id="offset-london">UTC +0</div>
+            </div>
+
+            <!-- Токио -->
+            <div class="clock-card">
+                <div class="clock-city">🇯🇵 Токио</div>
+                <div class="clock-date" id="date-tokyo"></div>
+                <div class="analog-clock">
+                    <div class="hand hour-hand" id="hour-tokyo"></div>
+                    <div class="hand minute-hand" id="minute-tokyo"></div>
+                    <div class="hand second-hand" id="second-tokyo"></div>
+                </div>
+                <div class="digital-time" id="time-tokyo">00:00:00</div>
+                <div class="clock-offset" id="offset-tokyo">UTC +9</div>
+            </div>
+
+            <!-- Сидней -->
+            <div class="clock-card">
+                <div class="clock-city">🇦🇺 Сидней</div>
+                <div class="clock-date" id="date-sydney"></div>
+                <div class="analog-clock">
+                    <div class="hand hour-hand" id="hour-sydney"></div>
+                    <div class="hand minute-hand" id="minute-sydney"></div>
+                    <div class="hand second-hand" id="second-sydney"></div>
+                </div>
+                <div class="digital-time" id="time-sydney">00:00:00</div>
+                <div class="clock-offset" id="offset-sydney">UTC +10</div>
+            </div>
+
+            <!-- Дубай -->
+            <div class="clock-card">
+                <div class="clock-city">🇦🇪 Дубай</div>
+                <div class="clock-date" id="date-dubai"></div>
+                <div class="analog-clock">
+                    <div class="hand hour-hand" id="hour-dubai"></div>
+                    <div class="hand minute-hand" id="minute-dubai"></div>
+                    <div class="hand second-hand" id="second-dubai"></div>
+                </div>
+                <div class="digital-time" id="time-dubai">00:00:00</div>
+                <div class="clock-offset" id="offset-dubai">UTC +4</div>
+            </div>
+        </div>
+
+        <!-- Список всех часовых поясов -->
+        <div class="timezones-list">
+            <h2 class="timezones-title">📍 Все часовые пояса</h2>
+            <div id="timezones-container"></div>
+        </div>
+    </div>
+
+    <script>
+        const timezones = [
+            { name: '🌏 Мир (UTC)', offset: 0 },
+            { name: '🇬🇧 Лондон', offset: 0 },
+            { name: '🇫🇷 Франция', offset: 1 },
+            { name: '🇿🇦 Южная Африка', offset: 2 },
+            { name: '🇷🇺 Москва', offset: 3 },
+            { name: '🇦🇪 Дубай', offset: 4 },
+            { name: '🇮🇳 Индия', offset: 5.5 },
+            { name: '🇹🇭 Бангкок', offset: 7 },
+            { name: '🇨🇳 Пекин', offset: 8 },
+            { name: '🇯🇵 Токио', offset: 9 },
+            { name: '🇦🇺 Сидней', offset: 10 },
+            { name: '🇳🇿 Новая Зеландия', offset: 12 },
+        ];
+
+        const mainClocks = [
+            { id: 'moscow', timezone: 'Europe/Moscow', offset: 3 },
+            { id: 'newyork', timezone: 'America/New_York', offset: -5 },
+            { id: 'london', timezone: 'Europe/London', offset: 0 },
+            { id: 'tokyo', timezone: 'Asia/Tokyo', offset: 9 },
+            { id: 'sydney', timezone: 'Australia/Sydney', offset: 10 },
+            { id: 'dubai', timezone: 'Asia/Dubai', offset: 4 }
+        ];
+
+        function updateClock(clockData) {
+            const now = new Date();
+            
+            // Получаем время в заданном часовом поясе
+            const formatter = new Intl.DateTimeFormat('ru-RU', {
+                timeZone: clockData.timezone,
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit'
+            });
+
+            const parts = formatter.formatToParts(now);
+            const time = {};
+            
+            parts.forEach(part => {
+                time[part.type] = part.value;
+            });
+
+            const hours = parseInt(time.hour);
+            const minutes = parseInt(time.minute);
+            const seconds = parseInt(time.second);
+
+            // Обновляем цифровое время
+            const timeString = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            document.getElementById(`time-${clockData.id}`).textContent = timeString;
+
+            // Обновляем дату
+            const dateString = `${time.day}.${time.month}.${time.year}`;
+            document.getElementById(`date-${clockData.id}`).textContent = dateString;
+
+            // Рассчитываем углы для стрелок
+            const secondDegrees = (seconds / 60) * 360 + 90;
+            const minuteDegrees = (minutes / 60) * 360 + (seconds / 60) * 6 + 90;
+            const hourDegrees = (hours / 12) * 360 + (minutes / 60) * 30 + 90;
+
+            // Применяем трансформации
+            document.getElementById(`second-${clockData.id}`).style.transform = `rotate(${secondDegrees}deg)`;
+            document.getElementById(`minute-${clockData.id}`).style.transform = `rotate(${minuteDegrees}deg)`;
+            document.getElementById(`hour-${clockData.id}`).style.transform = `rotate(${hourDegrees}deg)`;
+        }
+
+        function updateAllClocks() {
+            mainClocks.forEach(clock => updateClock(clock));
+        }
+
+        function initializeTimezonesList() {
+            const container = document.getElementById('timezones-container');
+            timezones.forEach(tz => {
+                const item = document.createElement('div');
+                item.className = 'timezone-item';
+                item.innerHTML = `
+                    <span class="timezone-name">${tz.name}</span>
+                    <span class="timezone-offset">UTC ${tz.offset >= 0 ? '+' : ''}${tz.offset}</span>
+                `;
+                container.appendChild(item);
+            });
+        }
+
+        // Инициализация
+        updateAllClocks();
+        initializeTimezonesList();
+
+        // Обновляем часы каждую секунду
+        setInterval(updateAllClocks, 1000);
+    </script>
+</body>
+</html>
